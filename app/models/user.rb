@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_many :posts
 
   has_many :likes, :dependent => :destroy
@@ -7,6 +8,10 @@ class User < ApplicationRecord
   def display_name
     ## 取email的前半来显示，如果你也可以另开一个字段是nickname让用户可以自己编辑显示名称
     self.email.split("@").first
+  end
+
+  def is_admin?
+    role == "admin"
   end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
